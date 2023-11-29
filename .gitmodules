@@ -1,3 +1,3 @@
-[submodule "submodule-folder"]
-	path = submodule-folder
+[submodule "weather"]
+	path = weather
 	url = https://github.com/KDissanayake/Explore-Ceylon-Group-B1-Project.git
