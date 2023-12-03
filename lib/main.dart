@@ -1,3 +1,4 @@
+import 'package:explore_ceylon/pages/Login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        home: const LoginPage(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: "Poppins",
