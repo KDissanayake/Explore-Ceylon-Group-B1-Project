@@ -1,0 +1,15 @@
+{
+    "app_title": "App",
+    "welcome_message": "Welcome!",
+    "login": "Login",
+    "create_account": "Create Account",
+    "sign_in_with_google": "Sign in with Google",
+    "email": "Email",
+    "password": "Password",
+    "forgot_password": "Forgot Password?",
+    "new_user_question": "New user? Create an account here",
+    "already_have_account_question": "Already have an account? Log in here",
+    "login_success": "Login successful",
+    "login_failed": "Login failed. Please try again."
+  }
+  

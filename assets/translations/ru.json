@@ -1,0 +1,15 @@
+{
+    "app_title": "Приложение",
+    "welcome_message": "Добро пожаловать!",
+    "login": "Войти",
+    "create_account": "Создать аккаунт",
+    "sign_in_with_google": "Войти через Google",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "forgot_password": "Забыли пароль?",
+    "new_user_question": "Новый пользователь? Создайте аккаунт здесь",
+    "already_have_account_question": "Уже есть аккаунт? Войдите здесь",
+    "login_success": "Вход выполнен успешно",
+    "login_failed": "Ошибка входа. Пожалуйста, попробуйте еще раз."
+  }
+  
