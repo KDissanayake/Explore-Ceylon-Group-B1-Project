@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #456461;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #182727;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+        .navbar img {
+            height: 100px; /* Adjust height as needed */
+            margin-bottom: 20px;
+            padding: 2%;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 17px;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+            padding-left: 20px; /* Adjust padding as needed */
+        }
+
+        .navbar a.active {
+            color: hsl(122, 39%, 49%);
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        #root {
+            margin-left: 220px; /* Adjusted to accommodate navbar width */
+            padding: 20px;
+            background-color: #182727;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align:left;
+            color: white;
+        }
+
+        .card {
+            background-color: #fff;
+            color: black;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 10px 60px 10px;
+            margin-bottom: 20px;
+            width: 30%; /* Adjust width as needed */
+            float: left; /* Make the cards float to the left */
+            margin-right: 20px; /* Add some space between cards */
+            position: relative; /* Added position relative for button positioning */
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 0;
+            color: black;
+        }
+
+        #blogContainer {
+            overflow: auto; /* Add overflow property to clear the floats */
+        }
+
+        .delete-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+
+        .delete-btn:hover {
+            background-color: #4CAF50;
+        }
+
+
+    </style>
+</head>
+
+<!-- Load Firebase libraries before using them -->
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-storage-compat.js"></script>
+
+<body>
+<div class="navbar">
+    <img src="assets/logo.png" alt="Logo"> <!-- Replace "your-image-url" with the URL of your logo image -->
+    <a href="blogs.html" class="active">Reported Blogs</a>
+    <!-- Add other navbar items as needed -->
+</div>
+
+<div id="root">
+    <h1>Reported Blogs</h1>
+    <div id="blogContainer"></div>
+</div>
+
+<script>
+    // Initialize Firebase
+    const firebaseConfig = {
+            apiKey: "AIzaSyC3vFIuYf1aJRlE9bsksdVGUqQVgy2MHWE",
+            authDomain: "explore-ceylon-8d362.firebaseapp.com",
+            projectId: "explore-ceylon-8d362",
+            storageBucket: "explore-ceylon-8d362.appspot.com",
+            messagingSenderId: "278942730494",
+            appId: "1:278942730494:web:c72a7e9bdfc24d4128bdaf"
+        };
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const blogContainer = document.getElementById('blogContainer');
+
+        firebase.firestore().collection('blogs').where('reported', '==', true).get()
+            .then(snapshot => {
+                console.log('Number of documents:', snapshot.size);
+
+                snapshot.forEach(async doc => {
+                    const blogData = doc.data();
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    const image = document.createElement('img');
+                    image.src = blogData.imageUrl;
+                    card.appendChild(image);
+
+                    const title = document.createElement('h2');
+                    title.textContent = blogData.topic;
+                    card.appendChild(title);
+
+                    const content = document.createElement('p');
+                    content.textContent = blogData.content;
+                    card.appendChild(content);
+
+                    const location = document.createElement('p');
+                    location.textContent = 'Location: ' + blogData.location;
+                    card.appendChild(location);
+
+                    const user = document.createElement('p');
+                    user.textContent = 'User ID: ' + blogData.userId;
+                    card.appendChild(user);
+
+                    // Create delete button
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.addEventListener('click', async () => {
+                        // Delete the blog document from Firestore
+                        await firebase.firestore().collection('blogs').doc(doc.id).delete();
+                        // Remove the card from the UI
+                        card.remove();
+                    });
+                    card.appendChild(deleteBtn);
+
+                    blogContainer.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching reported blogs:', error);
+            });
+    });
+</script>
+</body>
+</html>
