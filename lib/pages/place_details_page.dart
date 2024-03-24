@@ -11,6 +11,7 @@ import 'package:useraccount/components/LoadingDialog.dart';
 import 'package:useraccount/components/appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_performance/firebase_performance.dart';
+import 'package:useraccount/functions/PermissionHandler.dart';
 
 class PlaceDetailsPage extends StatefulWidget {
   final String locationName;
@@ -157,10 +158,16 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                 ),
                 SizedBox(width: 35),
                 IconButton(
-                  onPressed: () {
-                    _showLoadingDialog(
-                        context); // Show loading dialog when pressed
-                    _getAndLaunchDirections(widget.latitude, widget.longitude);
+                  onPressed: () async {
+                    bool permissionGranted =
+                        await LocationPermissionHandler.requestPermission(
+                            context);
+                    if (permissionGranted) {
+                      _showLoadingDialog(
+                          context); // Show loading dialog when pressed
+                      _getAndLaunchDirections(
+                          widget.latitude, widget.longitude);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF182727),
@@ -291,14 +298,36 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
         }
       } catch (e) {
         // Handle any errors
+        _showErrorDialog(context, "Failed to create route. Please try again.");
         print('Error: $e');
       }
 
       trace.stop();
     } else {
       // Handle error if the HTTP request fails
+      _showErrorDialog(context, "Failed to load directions. Please try again.");
       throw 'Failed to load directions';
     }
+  }
+
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   List<LatLng> _decodePoly(String encoded) {

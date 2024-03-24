@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:firebase_performance/firebase_performance.dart';
+import 'package:useraccount/functions/PermissionHandler.dart';
 
 class TravelPlanScreen extends StatefulWidget {
   @override
@@ -112,19 +113,23 @@ class _TravelPlanScreenState extends State<TravelPlanScreen> {
         padding: const EdgeInsets.only(bottom: 70),
         child: FloatingActionButton(
           onPressed: () async {
-            _showLoadingDialog(context); // Show loading dialog
-            final currentLocation = await _getCurrentLocation();
-            if (currentLocation != null) {
-              _showDirections(currentLocation);
-            } else {
-              Navigator.pop(
-                  context); // Dismiss loading dialog if unable to fetch location
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Unable to fetch current location."),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+            bool permissionGranted =
+                await LocationPermissionHandler.requestPermission(context);
+            if (permissionGranted) {
+              _showLoadingDialog(context); // Show loading dialog
+              final currentLocation = await _getCurrentLocation();
+              if (currentLocation != null) {
+                _showDirections(currentLocation);
+              } else {
+                Navigator.pop(
+                    context); // Dismiss loading dialog if unable to fetch location
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Unable to fetch current location."),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
             }
           },
           child: Icon(Icons.directions),
@@ -185,7 +190,6 @@ class _TravelPlanScreenState extends State<TravelPlanScreen> {
     if (!data.containsKey('completed')) {
       doc.reference.update({'completed': false});
     }
-
 
     return Dismissible(
       key: Key(doc.id),
@@ -396,10 +400,22 @@ class MapScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF182727),
-        title: Text('Map View'),
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/logo-removebg-preview.png', // Adjust the path to your logo image
+          height: 40, // Adjust the height as needed
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,
+              color: Colors.white), // Set back icon color to white
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.directions),
+            icon: Icon(Icons.directions,
+                color: Colors.white), // Set direction icon color to white
             onPressed: () {
               _startTripWithGoogleMaps();
             },

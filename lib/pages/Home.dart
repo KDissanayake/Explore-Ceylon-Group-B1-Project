@@ -217,7 +217,7 @@ class _MapPageState extends State<MapPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final int maxDescriptionLength = 50;
+        final int maxDescriptionLength = 20;
         String shortenedDescription = description;
 
         if (description.split(' ').length > maxDescriptionLength) {
@@ -236,26 +236,28 @@ class _MapPageState extends State<MapPage> {
           child: Container(
             padding: EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFF182727),
               borderRadius: BorderRadius.circular(16.0),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   locationName,
                   style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins'),
+                    color: Colors.white,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
                 SizedBox(height: 8.0),
                 Text(
                   shortenedDescription,
                   style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey[800],
+                      color: Colors.white,
                       fontFamily: 'Poppins'),
                 ),
                 SizedBox(height: 16.0),
@@ -312,7 +314,8 @@ class _MapPageState extends State<MapPage> {
               SizedBox(height: 16.0),
               Text(
                 'Select Province:',
-                style: TextStyle(color: Colors.white, fontSize: 16.0),
+                style: TextStyle(
+                    color: Colors.white, fontSize: 16.0, fontFamily: 'Poppins'),
               ),
               DropdownButton<String>(
                 value: selectedProvince,
@@ -342,22 +345,40 @@ class _MapPageState extends State<MapPage> {
                 }).toList(),
               ),
               SizedBox(height: 16.0),
-              Text(
-                'Select Preferences:',
-                style: TextStyle(color: Colors.white, fontSize: 16.0),
-              ),
-              PreferenceSlider(
-                allPreferences: allPreferences,
-                selectedPreferences: selectedPreferences,
-                onPreferencesChanged: (selectedPrefs) {
-                  setState(() {
-                    selectedPreferences = selectedPrefs;
-                  });
-                  _fetchMarkers();
-                },
-                preferenceColors:
-                    preferenceColors, // Pass the preferenceColors map here
-              ),
+              // Conditional rendering of the message
+              if (allPreferences == null || allPreferences.isEmpty)
+                Text(
+                  'Select your preferences in the User Profile',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontFamily: 'Poppins'),
+                )
+              else
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Select Preferences:',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                          fontFamily: 'Poppins'),
+                    ),
+                    PreferenceSlider(
+                      allPreferences: allPreferences,
+                      selectedPreferences: selectedPreferences,
+                      onPreferencesChanged: (selectedPrefs) {
+                        setState(() {
+                          selectedPreferences = selectedPrefs;
+                        });
+                        _fetchMarkers();
+                      },
+                      preferenceColors:
+                          preferenceColors, // Pass the preferenceColors map here
+                    ),
+                  ],
+                ),
             ],
           ),
         );
