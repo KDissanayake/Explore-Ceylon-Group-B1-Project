@@ -2,7 +2,24 @@
 
 Explore Ceylon is a comprehensive mobile application designed to enhance the travel experience in Sri Lanka, offering personalized recommendations, interactive maps, community engagement, and essential services tailored to diverse interests.
 
-![Explore Ceylon](https://via.placeholder.com/300x600.png?text=App+Screenshot+1) ![Explore Ceylon](https://via.placeholder.com/300x600.png?text=App+Screenshot+2) ![Explore Ceylon](https://via.placeholder.com/300x600.png?text=App+Screenshot+3)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/84e728ef-0cfb-49e8-938e-f52c9812687a)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/81f8b8ca-3f51-45eb-828f-f2cf36157410)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/9ce8ede0-b379-4b15-b32d-7e935150a254)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/9d65f012-ccc4-4c43-beeb-57a5b25aba60)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/6ca81d06-d917-404a-9727-db966b67977b)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/31e07978-5798-4e91-81f2-70e431098eda)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/0ef782b5-1405-4ae5-8606-460c9b634604)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/b645393d-49eb-49a4-b139-9f53412865d4)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/aeda9780-fd1c-41bb-a9ac-3152295540e8)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/32a6b072-1d91-45b2-9a0e-222e64076751)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/2279c297-564a-4b7c-9e91-26064eeb9957)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/d7425269-235e-43cc-b4f0-b38437a1425d)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/66ff5764-793a-4a55-a12c-6223f8e3d834)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/82eb57d0-6214-4cac-b1fb-0e02f27b12a0)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/b8b83deb-10fa-406c-a995-fcee947aac78)
+![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/a1d05c30-3029-4294-9440-9fd194563844)
+
+
 
 ## Table of Contents
 
