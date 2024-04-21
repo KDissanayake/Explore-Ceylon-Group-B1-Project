@@ -56,9 +56,9 @@ To install and run the Explore Ceylon app on your local machine, follow these st
 
 1. Clone the repository:
 
-   ```
-   git clone https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project.git
-   ```
+ ```
+git clone https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project.git
+```
 
 
 2. Navigate to the project directory:
