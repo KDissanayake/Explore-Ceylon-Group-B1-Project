@@ -1,4 +1,7 @@
 # Explore Ceylon
+[![Dart](https://img.shields.io/badge/Dart-2BB7F6?style=flat&logo=dart&logoColor=white)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=white)](https://firebase.google.com)
 
 Explore Ceylon is a comprehensive mobile application designed to enhance the travel experience in Sri Lanka, offering personalized recommendations, interactive maps, community engagement, and essential services tailored to diverse interests.
 
@@ -18,8 +21,6 @@ Explore Ceylon is a comprehensive mobile application designed to enhance the tra
 ![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/82eb57d0-6214-4cac-b1fb-0e02f27b12a0)
 ![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/b8b83deb-10fa-406c-a995-fcee947aac78)
 ![image](https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project/assets/132426595/a1d05c30-3029-4294-9440-9fd194563844)
-
-
 
 ## Table of Contents
 
@@ -55,7 +56,31 @@ To install and run the Explore Ceylon app on your local machine, follow these st
 
 1. Clone the repository:
 
-2. 
+   ```
+   git clone https://github.com/YvanThrimawithana/Explore-Ceylon-Group-B1-Project.git
+   ```
+
+
+2. Navigate to the project directory:
+
+```
+cd Explore-Ceylon-Group-B1-Project
+```
+
+3. Install the required dependencies:
+
+```
+flutter pub get
+```
+
+
+4. Run the app:
+
+```
+flutter run
+```
+
+
 This will launch the app on your connected device or emulator.
 
 ## Usage
@@ -78,5 +103,7 @@ Contributions are welcome! If you have any ideas, suggestions, or bug reports, p
 This project is licensed under the MIT License.
 
 Made with ❤️ by Your Team - Explore Ceylon
+
+
 
 
